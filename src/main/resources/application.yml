@@ -1,0 +1,32 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
+  datasource:
+    url: jdbc:mysql://localhost:3306/tianrun?characterEncoding=utf8&useSSL=false
+    username: root
+    password: wczm
+    driver-class-name: com.mysql.jdbc.Driver
+  pagehelper:
+    reasonable: true
+    support-methods-arguments: true
+    params: count=countSql
+    helper-dialect: mysql
+
+#com.mysql.cj.jdbc.Driver
+mybatis:
+  type-aliases-package: cn.mg.tianrun01.entity
+  mapper-locations: classpath:mapper/*.xml
+server:
+  port: 8080

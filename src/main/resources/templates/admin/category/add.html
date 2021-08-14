@@ -1,0 +1,102 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" th:src="@{/js/libs/modernizr.min.js}"></script>
+</head>
+<body>
+<div th:include="commMenu::top" class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a href="../index.html" class="navbar-brand">后台管理</a></h1>
+            <ul class="navbar-list clearfix">
+                <li><a class="on" href="../index.html">首页</a></li>
+            </ul>
+        </div>
+        <div class="top-info-wrap">
+            <ul class="top-info-list clearfix">
+                <li><a href="http://www.mycodes.net">管理员</a></li>
+                <li><a href="http://www.mycodes.net">修改密码</a></li>
+                <li><a href="http://www.mycodes.net">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
+    <div th:include="commMenu::left" class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+             <ul class="sidebar-list">
+			
+                <li><a href="#"><i class="icon-font">鲜花数据操作</i></a>
+                    <ul class="sub-menu">
+                          <li><a href="list.html"><i class="icon-font"></i>鲜花类型管理</a></li>
+                        <li><a href="flower_list.html"><i class="icon-font"></i>鲜花管理</a></li>
+                     </ul>
+                </li>
+				
+				 <li><a href="#"><i class="icon-font">用户数据操作</i></a>
+                    <ul class="sub-menu">
+					    <li><a href="users_list.html"><i class="icon-font"></i>用户管理</a></li>
+                        <li><a href="orders_list.html"><i class="icon-font"></i>订单管理</a></li>
+                    </ul>
+                </li>
+				
+                 <li><a href="#"><i class="icon-font">我的信息</i></a>
+                    <ul class="sub-menu">
+					    <li><a href="admin_infor.html"><i class="icon-font">please!登录</i></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">鲜花信息管理</a><span class="crumb-step">&gt;</span><span>新增鲜花</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="/admin/category/save"
+                      method="post"
+                      id="myform"
+                      name="myform"
+                enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody><tr>
+                        </tr>
+                            <tr>
+                                <th>商品类型名称:</th>
+                                <td><input class="common-text" name="name" size="30"  type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>商品类型logo:</th>
+                                <td><input class="common-text" name="file" size="30"  type="file"></td>
+                            </tr>
+                            <tr>
+                                <th>商品类型描述：</th>
+                                <td><textarea name="remark" class="common-textarea" id="content" cols="30" style="width: 80%;" rows="10"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="添加" type="submit">
+                                    <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

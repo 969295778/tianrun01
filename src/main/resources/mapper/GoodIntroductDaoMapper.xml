@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mg.tianrun01.dao.GoodIntroductDao">
+
+
+    <resultMap type="cn.mg.tianrun01.entity.Goods" id="mg">
+        <!-- 多对一 -->
+        <association
+                property="goods"
+                column="goods_id"
+                javaType="cn.mg.tianrun01.entity.Goods"
+                select="cn.mg.tianrun01.dao.GoodsDao.selectById"/>
+    </resultMap>
+
+<insert id="insert" parameterType="cn.mg.tianrun01.entity.GoodIntroduct">
+insert into good_introduct(id,intr_pic,goods_id) values(null,#{intr_pic},#{goods.id})
+</insert>
+
+<delete id="delete" parameterType="cn.mg.tianrun01.entity.GoodIntroduct">
+delete from good_introduct where id=#{id}
+</delete>
+
+<update id="update" parameterType="cn.mg.tianrun01.entity.GoodIntroduct">
+update good_introduct set intr_pic=#{intr_pic},goods_id=#{goods.id} where id=#{id}
+</update>
+
+<select id="selectAll" resultMap="mg">
+select * from good_introduct
+</select>
+
+<select id="selectByid" parameterType="cn.mg.tianrun01.entity.GoodIntroduct" resultMap="mg">
+select * from good_introduct where id=#{id}
+</select>
+
+</mapper>

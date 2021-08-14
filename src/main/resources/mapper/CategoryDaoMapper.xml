@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mg.tianrun01.dao.CategoryDao">
+
+    <insert id="insert" parameterType="category" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into category(id,name,logo,remark) values(null,#{name},#{logo},#{remark})
+    </insert>
+
+    <delete id="delete" parameterType="cn.mg.tianrun01.entity.Category">
+        delete from category where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="cn.mg.tianrun01.entity.Category">
+        update category set name=#{name},logo=#{logo},remark=#{remark} where id=#{id}
+    </update>
+
+    <select id="selectAll" resultType="cn.mg.tianrun01.entity.Category">
+        select * from category
+    </select>
+
+    <select id="selectById" parameterType="cn.mg.tianrun01.entity.Category" resultType="cn.mg.tianrun01.entity.Category">
+        select * from category where id=#{id}
+    </select>
+
+</mapper>

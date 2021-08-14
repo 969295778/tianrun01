@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mg.tianrun01.dao.CartDao">
+
+    <resultMap type="cn.mg.tianrun01.entity.Cart" id="mg">
+        <association
+                property="orders"
+                column="orders_id"
+                javaType="orders"
+                select="cn.mg.tianrun01.dao.OrdersDao.selectById"/>
+        <association
+                property="goods"
+                column="goods_id"
+                javaType="goods"
+                select="cn.mg.tianrun01.dao.GoodsDao.selectById"/>
+    </resultMap>
+
+<insert id="insert" parameterType="cn.mg.tianrun01.entity.Cart">
+insert into cart(id,orders.id,goods.id,gcount) values(null,#{orders.id},#{goods.id},#{gcount})
+</insert>
+
+<delete id="delete" parameterType="cn.mg.tianrun01.entity.Cart">
+delete from cart where id=#{id}
+</delete>
+
+<update id="update" parameterType="cn.mg.tianrun01.entity.Cart">
+update cart set orders.id=#{orders.id},goods.id=#{goods.id},gcount=#{gcount} where id=#{id}
+</update>
+
+<select id="selectAll" resultMap="mg">
+select * from cart
+</select>
+
+<select id="selectByid" parameterType="cn.mg.tianrun01.entity.Cart" resultMap="mg">
+select * from cart where id=#{id}
+</select>
+
+</mapper>

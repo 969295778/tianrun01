@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mg.tianrun01.dao.UsersDao">
+
+<insert id="insert" parameterType="cn.mg.tianrun01.entity.Users">
+insert into users(id,wx_id,username,phone,name,pic,cardid,status)
+              values(null,#{wx_id},#{username},#{phone},#{name},#{pic},#{cardid},#{status})
+</insert>
+
+<delete id="delete" parameterType="cn.mg.tianrun01.entity.Users">
+delete from users where id=#{id}
+</delete>
+
+<update id="update" parameterType="cn.mg.tianrun01.entity.Users">
+update users set wx_id=#{wx_id},username=#{username},phone=#{phone},name=#{name},pic=#{pic},cardid=#{cardid},status=#{status} where id=#{id}
+</update>
+
+<select id="selectAll" resultType="cn.mg.tianrun01.entity.Users">
+select * from users
+</select>
+
+<select id="selectById" parameterType="cn.mg.tianrun01.entity.Users" resultType="cn.mg.tianrun01.entity.Users">
+select * from users where id=#{id}
+</select>
+
+    <select id="selectByLikeUn" parameterType="users" resultType="users">
+        select * from users where username like concat('%',#{username},'%')
+
+    </select>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mg.tianrun01.dao.OrdersDao">
+
+    <resultMap type="cn.mg.tianrun01.entity.Orders" id="mg">
+        <association
+                property="users"
+                column="users_id"
+                javaType="users"
+                select="cn.mg.tianrun01.dao.UsersDao.selectById"/>
+    </resultMap>
+<insert id="insert" parameterType="cn.mg.tianrun01.entity.Orders">
+insert into orders(id,users_id,price,savename,savephone,saveaddr,status) values(null,#{users.id},#{price},#{savename},#{savephone},#{saveaddr},#{status})
+</insert>
+
+<delete id="delete" parameterType="cn.mg.tianrun01.entity.Orders">
+delete from orders where id=#{id}
+</delete>
+
+<update id="update" parameterType="cn.mg.tianrun01.entity.Orders">
+update orders set users_id=#{users.id},price=#{price},savename=#{savename},savephone=#{savephone},saveaddr=#{saveaddr},status=#{status} where id=#{id}
+</update>
+
+<select id="selectAll" resultMap="mg">
+select * from orders
+</select>
+
+<select id="selectByid" parameterType="cn.mg.tianrun01.entity.Orders" resultMap="mg">
+select * from orders where id=#{id}
+</select>
+
+</mapper>

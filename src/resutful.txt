@@ -1,0 +1,25 @@
+http://localhost:8080/admin/category/add    post     页面
+http://localhost:8080/admin/category/modify    post    页面
+http://localhost:8080/admin/category/remove?id=1    get    页面
+http://localhost:8080/admin/category/list          get    页面
+
+
+http://localhost:8080/api/category            post      json
+http://localhost:8080/api/category           delete
+http://localhost:8080/api/category            put
+http://localhost:8080/api/category            get
+http://localhost:8080/api/category/1          get
+
+{"width":"1000px","height":"100px","bgcolor":"red"}
+
+
+ajax: Asynchronous JavaScript and XML,他是一种综合了js，css，xml，等
+技术进行异步刷新，也叫局部刷新（只刷新页面的局部），他是通过js，向后台服务器发送
+一个请求，服务响应数据给js，js对数据操作，然后体现页面上，不进行整个页面的刷新，
+实现步骤：
+（1）在js中新建XMLHTTPRequest对象xhr
+（2）对xhr开启状态监听
+（3）使用xhr.open打开请求
+（4）发送
+（5）对第二步的状态，根据不同状态做不同的操作
+

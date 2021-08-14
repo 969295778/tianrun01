@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mg.tianrun01.dao.GoodsDao">
+
+<resultMap type="cn.mg.tianrun01.entity.Goods" id="mg">
+<id column="id" property="id" />
+<result column="pic" property="pic"></result>
+<result column="price" property="price"></result>
+<result column="descri" property="descri"></result>
+<result column="icount" property="icount"></result>
+<result column="ocount" property="ocount"></result>
+<result column="discount" property="discount"></result>
+<result column="status" property="status"></result>
+<!-- 多对一 -->
+ <association
+         property="category"
+         column="category_id"
+         javaType="cn.mg.tianrun01.entity.Category"
+         select="cn.mg.tianrun01.dao.CategoryDao.selectById"/>
+</resultMap>
+
+<insert id="insert"
+keyColumn="id"
+keyProperty="id"
+useGeneratedKeys="true"
+parameterType="cn.mg.tianrun01.entity.Goods">
+insert into goods(id,name,pic,price,descri,icount,ocount,discount,status,category_id)
+values(null,#{name},#{pic},#{price},#{descri},#{icount},#{ocount},#{discount},#{status},#{category.id})
+</insert>
+
+<delete id="delete" parameterType="cn.mg.tianrun01.entity.Goods">
+delete from goods where id=#{id}
+</delete>
+
+<update id="update" parameterType="cn.mg.tianrun01.entity.Goods">
+update goods
+<set>
+ <if test="name!=null">name=#{name},</if>
+<if test="price!=null">price=#{price},</if>
+<if test="pic!=null">pic=#{pic},</if>
+<if test="descri!=null">descri=#{descri},</if>
+<if test="icount!=null">icount=#{icount},</if>
+<if test="ocount!=null">ocount=#{ocount},</if>
+<if test="discount!=null">discount=#{discount},</if>
+<if test="status!=null">status=#{status},</if>
+<if test="category.id!=null">category_id=#{category.id}</if>
+
+</set>
+where id=#{id}
+</update>
+
+<select id="selectAll" resultMap="mg">
+select * from goods
+</select>
+
+<select id="selectById" parameterType="cn.mg.tianrun01.entity.Goods" resultMap="mg">
+select * from goods where id=#{id}
+</select>
+
+</mapper>

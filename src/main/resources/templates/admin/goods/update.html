@@ -1,0 +1,126 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" th:src="@{/js/libs/modernizr.min.js}"></script>
+</head>
+<body>
+<div th:include="commMenu::top" class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a href="../index.html" class="navbar-brand">后台管理</a></h1>
+            <ul class="navbar-list clearfix">
+                <li><a class="on" href="../index.html">首页</a></li>
+            </ul>
+        </div>
+        <div class="top-info-wrap">
+            <ul class="top-info-list clearfix">
+                <li><a href="http://www.mycodes.net">管理员</a></li>
+                <li><a href="http://www.mycodes.net">修改密码</a></li>
+                <li><a href="http://www.mycodes.net">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
+    <div th:include="commMenu::left" class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+             <ul class="sidebar-list">
+			
+                <li><a href="#"><i class="icon-font">鲜花数据操作</i></a>
+                    <ul class="sub-menu">
+                          <li><a href="list.html"><i class="icon-font"></i>鲜花类型管理</a></li>
+                        <li><a href="list.html"><i class="icon-font"></i>鲜花管理</a></li>
+                     </ul>
+                </li>
+				
+				 <li><a href="#"><i class="icon-font">用户数据操作</i></a>
+                    <ul class="sub-menu">
+					    <li><a href="list.html"><i class="icon-font"></i>用户管理</a></li>
+                        <li><a href="list.html"><i class="icon-font"></i>订单管理</a></li>
+                    </ul>
+                </li>
+				
+                 <li><a href="#"><i class="icon-font">我的信息</i></a>
+                    <ul class="sub-menu">
+					    <li><a href="list.html"><i class="icon-font">please!登录</i></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">鲜花类型管理</a><span class="crumb-step">&gt;</span><span>修改鲜花类型</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="/admin/goods/edit" method="post" id="myform" name="myform" >
+                    <table th:each="te:${tem}" class="insert-tab" width="100%">
+                        <tbody><tr>
+                        </tr>
+                        <tr>
+                            <th>商品id:</th>
+                            <td><input class="common-text" name="id" th:value="${te.id}" size="30"  type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>商品名称:</th>
+                            <td><input class="common-text" name="name" th:value="${te.name}" size="30"  type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>商品图片:</th>
+                            <td><input class="common-text" name="pic" th:value="${te.pic}" size="30"  type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>商品价格:</th>
+                            <td><input class="common-text" name="price" th:value="${te.price}" size="30"  type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>商品描述:</th>
+                            <td><input name="descri" th:value="${te.descri}" class="common-textarea" size="30" type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>库存量:</th>
+                            <td><input class="common-text" name="icount" th:value="${te.icount}" size="30"  type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>销售数量:</th>
+                            <td><input name="ocount" th:value="${te.ocount}" class="common-textarea" size="30" type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>折扣:</th>
+                            <td><input class="common-text" name="discount" th:value="${te.discount}" size="30"  type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>状态:</th>
+                            <td><input name="status" th:value="${te.status}" class="common-textarea" size="30" type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>商品类型编号:</th>
+                            <td><input name="category.id" th:value="${te.category.id}" class="common-textarea" size="30" type="text"></td>
+                        </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="修改" type="submit">
+                                    <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>
